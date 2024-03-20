@@ -1,0 +1,22 @@
+-- Calcula la media de una lista de números
+media :: [Float] -> Float
+media xs = sum xs / fromIntegral (length xs)
+
+-- Calcula la desviación estándar de una lista de números
+desviacionEstandar :: [Float] -> Float
+desviacionEstandar xs = sqrt (sum (map (\x -> (x - m) ** 2) xs) / fromIntegral (length xs))
+    where m = media xs
+
+-- Calcula la puntuación típica (z-score) de un valor
+puntuacionTipica :: Float -> [Float] -> Float
+puntuacionTipica x xs = (x - media xs) / desviacionEstandar xs
+
+-- Identifica y devuelve los valores atípicos
+valoresAtipicos :: [Float] -> [Float]
+valoresAtipicos xs = filter (\x -> let z = puntuacionTipica x xs in z < -3 || z > 3) xs
+
+-- Main para demostrar el uso
+main :: IO ()
+main = do
+    let muestra = [10, 12, 23, 23, 16, 23, 21, 16, 100, 3, 2, -100]
+    print $ valoresAtipicos muestra
