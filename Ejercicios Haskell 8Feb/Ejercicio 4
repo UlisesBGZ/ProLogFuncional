@@ -1,0 +1,21 @@
+import Data.Char (toUpper)
+
+-- Función para convertir una nota numérica en una calificación
+notaACalificacion :: Int -> String
+notaACalificacion nota
+    | nota >= 95 = "Excelente"
+    | nota >= 85 = "Notable"
+    | nota >= 75 = "Bueno"
+    | nota >= 70 = "Suficiente"
+    | otherwise  = "Desempeño insuficiente"
+
+-- Función para convertir las asignaturas a mayúsculas y las notas a calificaciones
+convertirNotas :: [(String, Int)] -> [(String, String)]
+convertirNotas asignaturasNotas = [(map toUpper asignatura, notaACalificacion nota) | (asignatura, nota) <- asignaturasNotas]
+
+-- Main para demostrar el uso
+main :: IO ()
+main = do
+    let notasAlumno = [("Matemáticas", 92), ("Historia", 77), ("Física", 65), ("Literatura", 88)]
+    let resultado = convertirNotas notasAlumno
+    print resultado
