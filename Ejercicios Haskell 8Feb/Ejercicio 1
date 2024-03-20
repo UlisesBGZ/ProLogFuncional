@@ -1,0 +1,25 @@
+-- Función para aplicar descuento
+aplicarDescuento :: Float -> Float -> Float
+aplicarDescuento precio descuento = precio * (1 - descuento / 100)
+
+-- Función para aplicar IVA
+aplicarIVA :: Float -> Float -> Float
+aplicarIVA precio iva = precio * (1 + iva / 100)
+
+-- Función que procesa una cesta de la compra
+procesarCesta :: [(Float, Float)] -> (Float -> Float -> Float) -> Float
+procesarCesta cesta funcion = sum [funcion precio tasa | (precio, tasa) <- cesta]
+
+-- Main para demostrar el uso
+main :: IO ()
+main = do
+    let cestaDescuento = [(100, 10), (200, 20)] -- [(precio, descuento)]
+    let cestaIVA = [(100, 21), (200, 21)] -- [(precio, IVA)]
+    
+    -- Aplicar descuentos
+    let totalDescuento = procesarCesta cestaDescuento aplicarDescuento
+    putStrLn $ "Total con descuentos aplicados: " ++ show totalDescuento
+    
+    -- Aplicar IVA
+    let totalIVA = procesarCesta cestaIVA aplicarIVA
+    putStrLn $ "Total con IVA aplicado: " ++ show totalIVA
