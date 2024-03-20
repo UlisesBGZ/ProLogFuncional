@@ -1,0 +1,14 @@
+-- Función que recibe otra función y una lista, y devuelve otra lista con el resultado de aplicar la función a cada elemento.
+aplicarFuncionALista :: (a -> b) -> [a] -> [b]
+aplicarFuncionALista f lista = map f lista
+
+-- Ejemplo de función a aplicar: elevar al cuadrado
+cuadrado :: Int -> Int
+cuadrado x = x * x
+
+-- Main para demostrar el uso
+main :: IO ()
+main = do
+    let numeros = [1, 2, 3, 4, 5]
+    let resultado = aplicarFuncionALista cuadrado numeros
+    print resultado
