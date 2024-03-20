@@ -1,0 +1,9 @@
+-- Calcula el módulo de un vector de n dimensiones
+modulo :: [Float] -> Float
+modulo vector = sqrt (sum [x^2 | x <- vector])
+
+-- Main para demostrar el uso
+main :: IO ()
+main = do
+    let vector = [1, 2, 3] -- Ejemplo con un vector de 3 dimensiones
+    putStrLn $ "El módulo del vector es: " ++ show (modulo vector)
