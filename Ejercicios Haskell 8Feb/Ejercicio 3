@@ -1,0 +1,10 @@
+-- Función alternativa usando `words`
+palabrasYLongitudesAlt :: String -> [(String, Int)]
+palabrasYLongitudesAlt frase = [(palabra, length palabra) | palabra <- words frase]
+
+-- Main alternativo
+main :: IO ()
+main = do
+    let fraseAlt = "desarrollar una función que reciba una frase"
+    let resultadoAlt = palabrasYLongitudesAlt fraseAlt
+    print resultadoAlt
